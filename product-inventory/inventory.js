@@ -8,21 +8,35 @@ function calculateDiscount(price, discountRate) {
 function filterProducts(products, callback) {
     if (!Array.isArray(products) || typeof callback !== 'function') return [];
     return products.filter(callback);
-}
-// const products = [
-//     { name: 'Mouse', price: 25 },
-//     { name: 'Keyboard', price: 75 },
-//     { name: 'Monitor', price: 200 }
-// ];
-
-// let under200 = filterProducts(products, product => product.price < 200);
-// console.log(under200);
+};
 
 
 function sortInventory(inventory, key) {
     if (!Array.isArray(inventory) || typeof key !== 'string') return [];
-    // TODO: Implement sorting logic
-    return [];
-}
+
+    return [...inventory].sort((a, b) => {
+        if (a[key] < b[key]) return -1;
+        if (a[key] > b[key]) return 1;
+        return 0;
+    });
+};
+
+const products = [
+    { name: 'Mouse', price: 25 },
+    { name: 'Keyboard', price: 75 },
+    { name: 'Monitor', price: 200 }
+];
+
+// calculateDiscount() TEST
+
+// let under200 = filterProducts(products, product => product.price < 200);
+// console.log(under200);
+
+//filterProducts() TEST
+
+// sortInventory() TEST
+
+let priceSort = sortInventory(products, 'price');
+console.log(priceSort);
 
 module.exports = {calculateDiscount, filterProducts, sortInventory}

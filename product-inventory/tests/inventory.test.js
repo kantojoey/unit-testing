@@ -1,5 +1,11 @@
 const inventory = require("../inventory.js");
 
+const products = [
+    { name: 'Mouse', price: 25 },
+    { name: 'Keyboard', price: 75 },
+    { name: 'Monitor', price: 200 }
+];
+
 describe("The calculateDiscount() function ", function () {
   // positive case
   test("applies a valid discount rate", () => {
@@ -24,4 +30,19 @@ describe("The calculateDiscount() function ", function () {
   test("handles edge case with discount rate of 0", () => {
     expect(inventory.calculateDiscount(100, 0)).toBe(100);
   });
+});
+
+describe("The filterProducts() function should", function(){
+//positive case
+    test("filters products correctly by price", function(){
+        expect(inventory.filterProducts(products, product => product.price < 50)).toStrictEqual([ { name: 'Mouse', price: 25 } ]);
+    });
+//negative case
+    test("handles input that is not an array", function(){
+        expect(inventory.filterProducts("products", product => product.price < 50)).toStrictEqual([]);
+    });
+//edge case
+    test("handles an empty array gracefully", function(){
+        expect(inventory.filterProducts([], product => product.price === 0)).toStrictEqual([]);
+    });
 });

@@ -7,11 +7,17 @@ function calculateDiscount(price, discountRate) {
 
 function filterProducts(products, callback) {
     if (!Array.isArray(products) || typeof callback !== 'function') return [];
-    // TODO: Implement filtering logic
-    for(let i = 0; i < products; i++){
-        
-    }    return [];
+    return products.filter(callback);
 }
+// const products = [
+//     { name: 'Mouse', price: 25 },
+//     { name: 'Keyboard', price: 75 },
+//     { name: 'Monitor', price: 200 }
+// ];
+
+// let under200 = filterProducts(products, product => product.price < 200);
+// console.log(under200);
+
 
 function sortInventory(inventory, key) {
     if (!Array.isArray(inventory) || typeof key !== 'string') return [];
